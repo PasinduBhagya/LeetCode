@@ -30,9 +30,7 @@ class Solution:
             new_counter = 0
             
         
-        return finalCounter 
-              
-        
+        return finalCounter      
             
 solution = Solution()
 
