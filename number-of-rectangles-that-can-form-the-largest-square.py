@@ -3,6 +3,10 @@ from typing import List
 class Solution:
     def countGoodRectangles(self, rectangles: List[List[int]]) -> int:
         possibleSquareSizes = []
+        currentLagest = 0
+        counter = 0
+        currentLagest = 0
+        finalCounter = 0
         for i in range(len(rectangles)):
             val1 = rectangles[i][0]
             val2 = rectangles[i][1]
@@ -11,29 +15,24 @@ class Solution:
                 possibleSquareSizes.append(val1)
             else:
                 possibleSquareSizes.append(val2)
-                
-        finalCounter = 0
-        new_counter = 0
-        currentLagest = 0
-        
-        print(possibleSquareSizes)
-        
-        for j in range(len(possibleSquareSizes)): # [2, 3, 3, 3]
-            for k in range(len(possibleSquareSizes)):
-                
-                if possibleSquareSizes[j] == possibleSquareSizes[k]:
-                    new_counter += 1
-                    
-            if currentLagest < possibleSquareSizes[j]:
-                finalCounter = new_counter
-                currentLagest = possibleSquareSizes[j]
-            new_counter = 0
+
+        sortedUnique = list(set(possibleSquareSizes))
+        for sortedUniqueValue in sortedUnique:
+            for value in possibleSquareSizes:
+                if sortedUniqueValue == value:
+                    counter += 1
+                       
+            if currentLagest < sortedUniqueValue:
+                currentLagest = sortedUniqueValue
+                finalCounter = counter
             
+            counter = 0
         
-        return finalCounter      
+        
+        return finalCounter 
             
 solution = Solution()
 
-rectangles = [[3,12],[3,9],[8,5]]
+rectangles = [[8,6],[3,12],[3,9],[8,5],[1,5]]
 
 print(solution.countGoodRectangles(rectangles))
